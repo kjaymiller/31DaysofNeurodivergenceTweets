@@ -48,4 +48,4 @@ def overlay_text(
     draw.text((10, 100), f"#{day}", font=smallerfont, fill=(50, 50, 50, 5))
     draw.text((90, 100), text, font=font, fill=(50, 50, 50, 255))
     draw.text((400, 550), "#31DaysofNeurodivergence", font=smallerfont, fill=(250, 250, 250, 255))
-    image.save(save_path)
+    return image
