@@ -18,9 +18,9 @@ param location string =  resourceGroup().location
 ])
 param runtime string = 'python'
 
-var functionAppName = appName
-var hostingPlanName = appName
-var applicationInsightsName = appName
+var functionAppName = '${appName}azfunction'
+var hostingPlanName = '${appName}azhostingplan'
+var applicationInsightsName = '${appName}azappinsights'
 var storageAccountName = '${uniqueString(resourceGroup().id)}azfunctions'
 var workerRuntime = runtime
 
