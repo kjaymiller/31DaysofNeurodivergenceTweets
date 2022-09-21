@@ -1,12 +1,12 @@
 from PIL import Image, ImageFont, ImageDraw
 import textwrap
+import logging
 
 def overlay_text(
     day=int,
     text=str,
     *,
     image_path=str,
-    save_path=str,
     ) -> None:
     """Add text over an image"""
     # Wrap the text
@@ -24,18 +24,19 @@ def overlay_text(
         text = textwrap.fill(text, width=wrap_length_xl)
         image_size_ratio = image.size[0] * .010
     elif text_length >= wrap_cap_xl:
-        print(day, text_length, "xl")
+        image_text_size = "xl"
         text = textwrap.fill(text, width=wrap_length_lg)
         image_size_ratio = image.size[0] * .012
     elif text_length >= wrap_cap_lg:
-        print(day, text_length, "lg")
+        image_text_size = "lg"
         text = textwrap.fill(text, width=wrap_length_md)
         image_size_ratio = image.size[0] * .014
     else:
-        print(day, text_length, "md")
+        image_text_size = "md"
         text = textwrap.fill(text, width=wrap_length_sm)
         image_size_ratio = image.size[0] * .020
         
+    logging.info(f"generating {day} image with {image_text_size} text")
     draw = ImageDraw.Draw(image)
     font_size = 1
     font = ImageFont.truetype("assets/Lato-BoldItalic.ttf", font_size)

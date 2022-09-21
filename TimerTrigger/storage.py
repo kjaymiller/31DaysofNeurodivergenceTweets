@@ -17,9 +17,6 @@ def insert_message(queue_client: QueueClient, message: str) -> None:
 
 if __name__ == "__main__":
     queue = load_queue("31daysofndqueue")
-    # insert_message(queue, "Hello World")
-    # insert_message(queue, "Hello Moon")
-    # insert_message(queue, "Hello Space")
     msg = queue.receive_messages().next()
     print(msg.content, msg.id, msg.pop_receipt)
     queue.delete_message(msg.id, msg.pop_receipt)
