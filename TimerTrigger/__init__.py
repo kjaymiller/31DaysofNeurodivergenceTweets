@@ -14,8 +14,8 @@ def main(mytimer: func.TimerRequest) -> None:
     img = overlay_text(1, msg.content, image_path="./assets/test_cat.jpeg")
     image = BytesIO()
     img.save(image, format="JPEG")
-    
-    send_tweet(image, msg.content)
+    image.seek(0)
+    send_tweet(image=image, text=msg.content)
     logging.info(f"{msg.content} triggered at {datetime.datetime.utcnow()}")
     queue.delete_message(msg.id, msg.pop_receipt)
 
