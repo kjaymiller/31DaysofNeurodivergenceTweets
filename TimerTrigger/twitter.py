@@ -1,3 +1,4 @@
+import typing
 import tweepy
 import os
 from uuid import uuid4
@@ -27,6 +28,21 @@ client = tweepy.Client(
 )
 
 # Create a tweet
-def send_tweet(image: bytes, text: str):
-    media = api.media_upload(filename="test_image.jpeg", file=image)
+def send_tweet(
+    text: str,
+    image_name: str,
+    image_data: typing.Optional[bytes]=None,
+    api: tweepy.API=api,
+    client: tweepy.Client=client,
+):
+    """
+    Send a tweet with an image.
+    
+    Note:
+        if image_data is None, then it will try to open the image from the `image_name` path.
+
+    Note:
+        if api and client are None, then it will look for `TWITTER_ACCESS_TOKEN`, `TWITTER_ACCESS_SECRET`, `TWITTER_CONSUMER_KEY`, `TWITTER_CONSUMER_SECRET` in the environment variables.
+    """
+    media = api.media_upload(filename=image_name, file=image_data)
     return client.create_tweet(text=text, media_ids=[media.media_id])
