@@ -9,7 +9,13 @@ access_token_secret = os.environ.get("TWITTER_ACCESS_SECRET")
 consumer_key = os.environ.get("TWITTER_CONSUMER_KEY")
 consumer_secret = os.environ.get("TWITTER_CONSUMER_SECRET")
 
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth = tweepy.OAuth1UserHandler(
+    consumer_key=consumer_key,
+    consumer_secret=consumer_secret,
+    access_token=access_token,
+    access_token_secret=access_token_secret,
+)
+
 api = tweepy.API(auth)
 
 # Create API 2.0 object
@@ -21,6 +27,6 @@ client = tweepy.Client(
 )
 
 # Create a tweet
-def send_tweet(image, text):
-    media = api.media_upload(filename=str(uuid4())+".jpg", file=image, alt_text=text)
-    logging.error(client.create_tweet(text=text, media_ids=[media]))
+def send_tweet(image: bytes, text: str):
+    media = api.media_upload(filename="test_image.jpeg", file=image)
+    return client.create_tweet(text=text, media_ids=[media.media_id])
