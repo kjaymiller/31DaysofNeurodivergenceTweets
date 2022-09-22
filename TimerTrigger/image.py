@@ -9,14 +9,19 @@ def overlay_text(
     image_path=str,
     ) -> None:
     """Add text over an image"""
+
+    # TODO: #12 Make things modular
+
     # Wrap the text
     wrap_cap_2xl = 305
     wrap_cap_xl = 225
     wrap_cap_lg = 100
+    
     wrap_length_xl = 47
     wrap_length_lg = 38
     wrap_length_md = 29
     wrap_length_sm = 21
+    
     image = Image.open(image_path)
 
     if (text_length:= len(text)) >= wrap_cap_2xl:
