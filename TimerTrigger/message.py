@@ -56,5 +56,5 @@ messages = (
 
 queue = load_queue("31daysofndqueue")
 
-for message in enumerate(messages, start=1):
-    queue.send_message(message, time_to_live=-1)
+for index_, message in enumerate(messages, start=1):
+    queue.send_message(f"{index_} - {message}", time_to_live=-1)
