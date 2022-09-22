@@ -9,9 +9,11 @@ from io import BytesIO
 
 def main(mytimer: func.TimerRequest) -> None:
     queue = load_queue("31daysofndqueue")
-    queue.send_message("This is a queued message from Azure Storage Queue.")
+    queue.send_message("2 - This is a numbered queue message")
     msg = queue.receive_messages().next()
-    img = overlay_text(1, msg.content, image_path="./assets/test_cat.jpeg")
+    # Message is in format "Index - Text"
+    index_, text = msg.content.split(" - ", maxsplit=1)
+    img = overlay_text(index_, text, image_path="./assets/test_cat.jpeg")
     image = BytesIO()
     img.save(image, format="JPEG")
     image.seek(0)
