@@ -1,5 +1,7 @@
 azure-functions
-azure-storage
+azure-storage-queue
 pillow
 spacy
 tweepy
+pytest
+pytest-cov
