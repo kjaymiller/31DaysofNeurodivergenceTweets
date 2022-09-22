@@ -13,6 +13,7 @@ There is a [bicep template](infrastructure/main.bicep) that you can deploy from.
 
 You'll need to provide the twitter API credentials, and the resource group (you can create one) and the RG location. Other variables are provided via the [main.parameters.json](infrastructure/main.parameters.json) file.
 
+You'll also need to add your function from the repo. You can do this using VSCode and the [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions).
 
 [Az Functions]: https://learn.microsoft.com/en-us/azure/azure-functions/functions-create-scheduled-function
 [tweepy]: http://www.tweepy.org/
