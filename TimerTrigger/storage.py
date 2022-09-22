@@ -10,13 +10,3 @@ def load_queue(name: str) -> QueueClient:
     """
     # Create a unique name for the queue
     return QueueClient.from_connection_string(conn_string, name)
-
-
-def insert_message(queue_client: QueueClient, message: str) -> None:
-    return queue_client.send_message(message, time_to_live=-1)
-
-if __name__ == "__main__":
-    queue = load_queue("31daysofndqueue")
-    msg = queue.receive_messages().next()
-    print(msg.content, msg.id, msg.pop_receipt)
-    queue.delete_message(msg.id, msg.pop_receipt)
