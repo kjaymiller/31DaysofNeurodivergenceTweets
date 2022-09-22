@@ -33,8 +33,10 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
   kind: 'Storage'
 }
 
-
-var azStorageAccountConnectionString = listKeys(storageAccount.id, storageAccount.apiVersion).keys[0].value
+var accountName = storageAccount.name
+var key = listKeys(storageAccount.id, storageAccount.apiVersion).keys[0].value
+var endpointSuffix = environment().suffixes.storage
+var storageAccountConnectionString = 'DefaultEndpointsProtocol=https;AccountName=${accountName};EndpointSuffix=${endpointSuffix};AccountKey=${key}'
 
 resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   name: applicationInsightsName
@@ -68,21 +70,24 @@ resource functionApp 'Microsoft.Web/sites@2022-03-01' = {
   kind: 'functionapp'
   properties: {
     serverFarmId: hostingPlan.id
-    siteConfig: {
-      appSettings: [
-        {
-          name: 'AzureWebJobsStorage'
-          value: azStorageAccountConnectionString
-        }
-        {
-          name: 'FUNCTIONS_WORKER_RUNTIME'
-          value: workerRuntime
-        }
-        {
-          name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
-          value: azAppInsightsInstrumentationKey
-        }
-      ]
-    }
+  }
+}
+
+var function_extension_version = '~4'
+param 
+
+resource appSettings 'Microsoft.Web/sites/config@2022-03-01' = {
+  parent: functionApp
+  name: 'appsettings'
+  properties: {
+    APPLICATIONINSIGHTS_CONNECTION_STRING: 'InstrumentationKey=${azAppInsightsInstrumentationKey}'
+    APPLICATIONINSIGHTS_INSTRUMENTATIONKEY: azAppInsightsInstrumentationKey
+    AZURE_STORAGE_CONNECTION_STRING: storageAccountConnectionString
+    AzureWebJobsStorage: storageAccountConnectionString
+    FUNCTIONS_WORKER_RUNTIME: workerRuntime
+    FUNCTIONS_EXTENSION_VERSION: function_extension_version
+    WEBSITE_CONTENTAZUREFILECONNECTIONSTRING: storageAccountConnectionString
+    WEBSITE_CONTENTSHARE: '${functionAppName}-content'
+
   }
 }
