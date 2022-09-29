@@ -1,6 +1,11 @@
+import os
 import typing
+import typer
+from pathlib import Path
 from azure.storage.queue import QueueClient
 
+
+conn_string = os.environ.get('AZURE_STORAGE_CONNECTION_STRING')
 
 def load_messages(
     messages: typing.Sequence[str],
@@ -16,3 +21,13 @@ def load_messages(
     for index_, message in enumerate(messages, start=1,): 
         # #11 will check for pre_upload
         yield queue.send_message(f"{index_} - {message}", **kwargs)
+
+
+def main(filepath: Path, queuename: str):
+    queue_client = QueueClient.from_connection_string(conn_string, queuename)
+    messages = filepath.read_text().splitlines()
+    for message in load_messages(messages, queue_client):
+        ...
+
+if __name__ == "__main__":
+    typer.run(main)
