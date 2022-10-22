@@ -3,5 +3,6 @@ azure-storage-queue
 pillow
 spacy
 tweepy
+typer
 pytest
 pytest-cov

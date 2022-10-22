@@ -6,22 +6,22 @@
 #
 attrs==22.1.0
     # via pytest
-azure-core==1.25.1
+azure-core==1.26.0
     # via
     #   azure-storage-queue
     #   msrest
-azure-functions==1.11.2
+azure-functions==1.12.0
     # via -r requirements.in
-azure-storage-queue==12.4.0
+azure-storage-queue==12.5.0
     # via -r requirements.in
-blis==0.9.1
+blis==0.7.9
     # via thinc
 catalogue==2.0.8
     # via
     #   spacy
     #   srsly
     #   thinc
-certifi==2022.9.14
+certifi==2022.9.24
     # via
     #   msrest
     #   requests
@@ -31,13 +31,13 @@ charset-normalizer==2.1.1
     # via requests
 click==8.1.3
     # via typer
-confection==0.0.1
+confection==0.0.3
     # via thinc
-coverage[toml]==6.4.4
+coverage[toml]==6.5.0
     # via pytest-cov
 cryptography==38.0.1
     # via azure-storage-queue
-cymem==2.0.6
+cymem==2.0.7
     # via
     #   preshed
     #   spacy
@@ -56,17 +56,17 @@ markupsafe==2.1.1
     # via jinja2
 msrest==0.7.1
     # via azure-storage-queue
-murmurhash==1.0.8
+murmurhash==1.0.9
     # via
     #   preshed
     #   spacy
     #   thinc
-numpy==1.23.3
+numpy==1.23.4
     # via
     #   blis
     #   spacy
     #   thinc
-oauthlib==3.2.1
+oauthlib==3.2.2
     # via
     #   requests-oauthlib
     #   tweepy
@@ -80,7 +80,7 @@ pillow==9.2.0
     # via -r requirements.in
 pluggy==1.0.0
     # via pytest
-preshed==3.0.7
+preshed==3.0.8
     # via
     #   spacy
     #   thinc
@@ -88,7 +88,7 @@ py==1.11.0
     # via pytest
 pycparser==2.21
     # via cffi
-pydantic==1.9.2
+pydantic==1.10.2
     # via
     #   confection
     #   spacy
@@ -99,7 +99,7 @@ pytest==7.1.3
     # via
     #   -r requirements.in
     #   pytest-cov
-pytest-cov==3.0.0
+pytest-cov==4.0.0
     # via -r requirements.in
 requests==2.28.1
     # via
@@ -118,18 +118,18 @@ six==1.16.0
     #   isodate
 smart-open==5.2.1
     # via pathy
-spacy==3.4.1
+spacy==3.4.2
     # via -r requirements.in
 spacy-legacy==3.0.10
     # via spacy
 spacy-loggers==1.0.3
     # via spacy
-srsly==2.4.4
+srsly==2.4.5
     # via
     #   confection
     #   spacy
     #   thinc
-thinc==8.1.1
+thinc==8.1.5
     # via spacy
 tomli==2.0.1
     # via
@@ -141,9 +141,10 @@ tweepy==4.10.1
     # via -r requirements.in
 typer==0.4.2
     # via
+    #   -r requirements.in
     #   pathy
     #   spacy
-typing-extensions==4.3.0
+typing-extensions==4.4.0
     # via
     #   azure-core
     #   pydantic
