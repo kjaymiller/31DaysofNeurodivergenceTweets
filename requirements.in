@@ -4,5 +4,6 @@ azqueuetweeter
 pillow
 spacy
 tweepy
+typer
 pytest
 pytest-cov
