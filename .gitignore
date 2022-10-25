@@ -136,3 +136,4 @@ __azurite_db*__.json
 .envrc
 .direnv
 LoadMessages/adhdMessages.py
+LoadMessages/adhdMessages.txt
