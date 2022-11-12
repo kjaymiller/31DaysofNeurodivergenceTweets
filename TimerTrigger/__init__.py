@@ -15,7 +15,10 @@ image_path = os.environ.get("IMAGE_TEMPLATE_PATH")
 conn_string = os.environ.get("AZURE_STORAGE_CONNECTION_STRING")
 queue_name = os.environ.get("AZURE_STORAGE_QUEUE_NAME")
 
-sa = storage.Auth(connection_string=conn_string, queue_name=queue_name)
+sa = storage.Auth(
+        connection_string=conn_string,
+        queue_name=queue_name,
+        )
 ta = twitter.Auth(
     consumer_key=os.environ.get("TWITTER_CONSUMER_KEY"),
     consumer_secret=os.environ.get("TWITTER_CONSUMER_SECRET"),
