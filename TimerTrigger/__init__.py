@@ -7,6 +7,7 @@ from io import BytesIO
 import azure.functions as func
 import spacy
 from azqueuetweeter import QueueTweeter, storage, twitter
+
 from .image import overlay_text
 
 nlp = spacy.load("assets/en_core_web_sm-3.4.0/en_core_web_sm/en_core_web_sm-3.4.0")
@@ -16,9 +17,9 @@ conn_string = os.environ.get("AZURE_STORAGE_CONNECTION_STRING")
 queue_name = os.environ.get("AZURE_STORAGE_QUEUE_NAME")
 
 sa = storage.Auth(
-        connection_string=conn_string,
-        queue_name=queue_name,
-        )
+    connection_string=conn_string,
+    queue_name=queue_name,
+)
 ta = twitter.Auth(
     consumer_key=os.environ.get("TWITTER_CONSUMER_KEY"),
     consumer_secret=os.environ.get("TWITTER_CONSUMER_SECRET"),
